@@ -4,9 +4,10 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = require('./dist/react-hot-loader.production.min.js');
 } else if (process.env.NODE_ENV === 'test') {
   module.exports = require('./dist/react-hot-loader.production.min.js');
-} else if (typeof window === 'undefined') {
-  // this is just server environment
-  module.exports = require('./dist/react-hot-loader.production.min.js');
+/* Really what we need is an environment variable clarifying that this is {N} CLI, to compare against */
+// } else if (typeof window === 'undefined') {;
+//   // this is just server environment
+//   module.exports = require('./dist/react-hot-loader.production.min.js');
 } else if (!module.hot) {
   console.error('React-Hot-Loader: Hot Module Replacement is not enabled');
   module.exports = require('./dist/react-hot-loader.production.min.js');
@@ -26,6 +27,8 @@ if (process.env.NODE_ENV === 'production') {
     console.warn('React-Hot-Loader is not supported in this environment.');
     module.exports = require('./dist/react-hot-loader.production.min.js');
   } else {
-    module.exports = window.reactHotLoaderGlobal = require('./dist/react-hot-loader.development.js');
+    /* Really what we need is an environment variable clarifying that this is {N} CLI, to compare against */
+    // module.exports = window.reactHotLoaderGlobal = require('./dist/react-hot-loader.development.js');
+    module.exports = global.reactHotLoaderGlobal = require('./dist/react-hot-loader.development.js');
   }
 }
